@@ -89,6 +89,6 @@ final_motor.py
 facial_req.py
 
 ## 參考資料
-https://core-electronics.com.au/guides/face-identify-raspberry-pi/  臉部辨識參考網站
-https://github.com/carolinedunn/facial_recognition 臉部辨識資料訓練
+https://core-electronics.com.au/guides/face-identify-raspberry-pi/  臉部辨識參考網站*/
+https://github.com/carolinedunn/facial_recognition 臉部辨識資料訓練*/
 https://circuitdigest.com/microcontroller-projects/raspberry-pi-telegram-bot 樹梅派連接telegram
