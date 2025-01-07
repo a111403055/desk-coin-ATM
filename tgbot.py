@@ -1,33 +1,27 @@
 import time
 import telepot
 from telepot.loop import MessageLoop
-import json
 
 # 狀態管理變數
 user_states = {}
 
-MONEY_FILE = "total_money.json"
-
-# 讀取 total_money
-def read_total_money():
-    try:
-        with open(MONEY_FILE, "r") as file:
-            data = json.load(file)
-            return data.get("total_money", 0)
-    except (FileNotFoundError, json.JSONDecodeError):
-        return 0
-
-# 寫入 total_money
-def write_total_money(new_total_money):
-    with open(MONEY_FILE, "w") as file:
-        json.dump({"total_money": new_total_money}, file)
-
 def fetch_total_money():
-    from final_ldr import total_money  # 導入當前 total_money
-    previous_total = read_total_money()  # 讀取之前存儲的 total_money
-    current_total = previous_total + total_money  # 累加 total_money
-    write_total_money(current_total)  # 保存更新後的 total_money
-    return current_total
+    try:
+        from final_ldr import total_money  # 導入當前 total_money
+        return total_money
+    except ImportError:
+        return "無法加載 final_ldr 模組！"
+    except Exception as e:
+        return f"發生錯誤: {e}"
+    
+def fetch_coin_count():
+    try:
+        from final_ldr import dark_counts  # 導入當前 total_money
+        return dark_counts
+    except ImportError:
+        return "無法加載 final_ldr 模組！"
+    except Exception as e:
+        return f"發生錯誤: {e}"
 
 def action(msg):
     global user_states
@@ -66,6 +60,8 @@ def action(msg):
         
         telegram_bot.sendMessage(chat_id, "請輸入數字：")
         user_states[chat_id] = 'awaiting_number'  # 設置狀態為等待數字
+        coin_counts = fetch_coin_count()
+        #telegram_bot.sendMessage(chat_id, f"Start coin machine. Total money: {coin_counts}")
         import final_motor
         
     elif command == '/unlock':
@@ -84,3 +80,4 @@ print('Up and Running....')
 
 while True:
     time.sleep(10)
+
