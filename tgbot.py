@@ -31,7 +31,6 @@ def action(msg):
     # 檢查用戶是否處於特定狀態
     if chat_id in user_states and user_states[chat_id] == 'awaiting_number':
         try:
-            a = number
             # 嘗試將輸入轉為數字
             number = int(command)
             user_states.pop(chat_id)  # 處理完成，清除狀態
@@ -39,9 +38,11 @@ def action(msg):
             with open("user_input.txt", "a") as file:
                 file.write(f"User {chat_id}: {number}\n")
             telegram_bot.sendMessage(chat_id, f"收到數字: {number}")
+            import final_motor  # 在這裡引入 final_motor 並使用 number
+            final_motor.control_servo(number)
         except ValueError:
             telegram_bot.sendMessage(chat_id, "請輸入有效的數字！")
-        return a
+        return
 
     print('Received: %s' % command)
 
@@ -62,7 +63,6 @@ def action(msg):
         user_states[chat_id] = 'awaiting_number'  # 設置狀態為等待數字
         coin_counts = fetch_coin_count()
         #telegram_bot.sendMessage(chat_id, f"Start coin machine. Total money: {coin_counts}")
-        import final_motor
         
     elif command == '/unlock':
         telegram_bot.sendMessage(chat_id, "Start face recognition")
