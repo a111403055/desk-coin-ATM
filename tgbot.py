@@ -33,15 +33,20 @@ def action(msg):
     if chat_id in user_states and user_states[chat_id] == 'awaiting_number':
         try:
             # 嘗試將輸入轉為數字
-            global number
             number = int(command)
             user_states.pop(chat_id)  # 處理完成，清除狀態
             # 存取數字或執行其他邏輯
             with open("user_input.txt", "a") as file:
                 file.write(f"User {chat_id}: {number}\n")
-            telegram_bot.sendMessage(chat_id, f"收到數字: {number}")
             
-            import final_motor  # 在這裡引入 final_motor 並使用 number
+            
+            total_coin = fetch_total_money()
+            
+            if number <= total_coin: 
+                telegram_bot.sendMessage(chat_id, f"收到數字: {number}")
+                import final_motor  # 在這裡引入 final_motor 並使用 number
+            else:
+                telegram_bot.sendMessage(chat_id, "No enough money") 
             
         except ValueError:
             telegram_bot.sendMessage(chat_id, "請輸入有效的數字！")
