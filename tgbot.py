@@ -1,5 +1,6 @@
 import time
 import telepot
+import subprocess
 from telepot.loop import MessageLoop
 
 # 狀態管理變數
@@ -32,14 +33,16 @@ def action(msg):
     if chat_id in user_states and user_states[chat_id] == 'awaiting_number':
         try:
             # 嘗試將輸入轉為數字
+            global number
             number = int(command)
             user_states.pop(chat_id)  # 處理完成，清除狀態
             # 存取數字或執行其他邏輯
             with open("user_input.txt", "a") as file:
                 file.write(f"User {chat_id}: {number}\n")
             telegram_bot.sendMessage(chat_id, f"收到數字: {number}")
+            
             import final_motor  # 在這裡引入 final_motor 並使用 number
-            #final_motor.control_servo(number)
+            
         except ValueError:
             telegram_bot.sendMessage(chat_id, "請輸入有效的數字！")
         return
@@ -60,25 +63,25 @@ def action(msg):
     elif command == '/withdraw':
         
         telegram_bot.sendMessage(chat_id, "請輸入數字：")
-        user_states[chat_id] = 'awaiting_number'  # 設置狀態為等待數字
         coin_counts = fetch_coin_count()
+        user_states[chat_id] = 'awaiting_number'  # 設置狀態為等待數字
         #telegram_bot.sendMessage(chat_id, f"Start coin machine. Total money: {coin_counts}")
-        import final_motor
+        #import final_motor
         
     elif command == '/unlock':
         telegram_bot.sendMessage(chat_id, "Start face recognition")
         import facial_req
         
+if __name__ == "__main__":
+    # 初始化 Telegram Bot
+    telegram_bot = telepot.Bot('7662998172:AAHWJB78tA_Qi003MB-BEpiHcO0JFP7G3DA')
 
-# 初始化 Telegram Bot
-telegram_bot = telepot.Bot('7662998172:AAHWJB78tA_Qi003MB-BEpiHcO0JFP7G3DA')
+    print(telegram_bot.getMe())
 
-print(telegram_bot.getMe())
+    MessageLoop(telegram_bot, action).run_as_thread()
 
-MessageLoop(telegram_bot, action).run_as_thread()
+    print('Up and Running....')
 
-print('Up and Running....')
-
-while True:
-    time.sleep(10)
+    while True:
+        time.sleep(10)
 
