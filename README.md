@@ -18,11 +18,30 @@
 ### 材料清單
 * Rasberry Pi 4 x 1
 * Rasberry Pi Camera Module x 1
+* 麵包板 x 1
 * 5mm光敏電阻 x 4
+* led(非常亮) x 4
 * 伺服馬達 x5
 
 ### 硬體組成
 /解釋組合
+
+## 創建Telegram bot
+1. 下載並註冊Telegram https://telegram.org/apps
+   ![image](https://github.com/user-attachments/assets/7571e553-2041-4fd5-9ae8-aadbbf69ccd4)
+2. 使用 @BotFather來創建並管理你的bot
+   
+   ![image](https://github.com/user-attachments/assets/610f6980-9c5a-4dbd-ab67-a5bf69100124)
+3. 創建Telegram bot的範例
+   
+．https://ithelp.ithome.com.tw/articles/10245264
+
+．https://hackmd.io/@truckski/HkgaMUc24?type=view#Python-Telegram-Bot-%E6%95%99%E5%AD%B8-by-%E9%99%B3%E9%81%94%E4%BB%81
+
+4. 將你的token輸入tgbot.py中的"YOUR TOKEN HERE".
+
+注意: 請妥善保管你的bot的token.
+
 
 ## 準備
 首先，具備Raspbian Buster OS之樹梅派4B，並確保內含Python版本為3
@@ -79,16 +98,20 @@ sudo apt install mpg321
 sudo pip3 install numpy --upgrade --ignore-installed
 ```
 
+###安裝telepot
+
 ## 功能和程式
-tgbot.py
+###tgbot.py
 
-final_ldr.py
+###final_ldr.py
 
-final_motor.py
+###final_motor.py
 
-facial_req.py
+###facial_req.py
 
 ## 參考資料
-https://core-electronics.com.au/guides/face-identify-raspberry-pi/  臉部辨識參考網站*/
-https://github.com/carolinedunn/facial_recognition 臉部辨識資料訓練*/
+https://core-electronics.com.au/guides/face-identify-raspberry-pi/  臉部辨識參考網站
+
+https://github.com/carolinedunn/facial_recognition 臉部辨識資料訓練
+
 https://circuitdigest.com/microcontroller-projects/raspberry-pi-telegram-bot 樹梅派連接telegram
