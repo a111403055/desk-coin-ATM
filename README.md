@@ -40,17 +40,13 @@
 
 4. 將你的token輸入tgbot.py中的"YOUR TOKEN HERE".
 
-注意: 請妥善保管你的bot的token.
+   注意: 請妥善保管你的bot的token.
 
 
 ## 準備
 首先，具備Raspbian Buster OS之樹梅派4B，並確保內含Python版本為3
 
 ### 安裝Open-CV和Mediapipe
-用下列指令將CONF_SWAPSIZE = 100變更為CONF_SWAPSIZE=2048
-```bash
-sudo nano /etc/dphys-swapfile
-```
 
 安裝+解壓，其中最後一步會執行一個多小時，請耐心等待
 ```bash
@@ -87,27 +83,30 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \ -D CMAKE_INSTALL_PREFIX=/usr/local \ -D INST
 make -j $(nproc)
 ```
 
-安裝Mediapipe
+### 安裝需要的套件
 ```bash
-sudo pip3 install mediapipe-rpi4
+sudo pip3 install telepot
 
-sudo pip3 install gtts
+sudo pip3 install face_recognition
 
-sudo apt install mpg321
+sudo pip3 install imutils
 
-sudo pip3 install numpy --upgrade --ignore-installed
+sudo pip3 install pickle
+
+sudo pip3 install cv2
+
+sudo pip3 install os
+
 ```
 
-###安裝telepot
-
 ## 功能和程式
-###tgbot.py
+### tgbot.py
 
-###final_ldr.py
+### final_ldr.py
 
-###final_motor.py
+### final_motor.py
 
-###facial_req.py
+### facial_req.py
 
 ## 參考資料
 https://core-electronics.com.au/guides/face-identify-raspberry-pi/  臉部辨識參考網站
