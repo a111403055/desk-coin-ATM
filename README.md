@@ -46,7 +46,7 @@
 ## 準備
 首先，具備Raspbian Buster OS之樹梅派4B，並確保內含Python版本為3
 
-### 安裝Open-CV和Mediapipe
+### 安裝Open-CV
 
 安裝+解壓，其中最後一步會執行一個多小時，請耐心等待
 ```bash
@@ -107,6 +107,8 @@ sudo pip3 install os
 ### final_motor.py
 
 ### facial_req.py
+
+## 實作範例
 
 ## 參考資料
 https://core-electronics.com.au/guides/face-identify-raspberry-pi/  臉部辨識參考網站
