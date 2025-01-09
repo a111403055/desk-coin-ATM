@@ -57,6 +57,29 @@ servo3 = Servo(13)
 servo4 = Servo(19)
 
 for i in range(3,-1,-1):
+    while servo_counts[i] > 0:
+        if i == 0:
+            servo1.min()
+            sleep(0.5)
+            servo1.max()
+            sleep(0.5)
+        elif i == 1:
+            servo2.min()
+            sleep(0.5)
+            servo2.max()
+            sleep(0.5)
+        elif i == 2:
+            servo3.min()
+            sleep(0.5)
+            servo3.max()
+            sleep(0.5)
+        elif i == 3:
+            servo4.min()
+            sleep(0.5)
+            servo4.max()
+            sleep(0.5)
+
+
 #while True:
 #    servo.min()
 #    sleep(2)
