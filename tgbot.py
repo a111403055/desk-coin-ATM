@@ -40,9 +40,8 @@ def action(msg):
                 file.write(f"User {chat_id}: {number}\n")
             
             
-            total_coin = fetch_total_money()
-            
-            if number <= total_coin: 
+            total_coin = fetch_total_money()  
+            if number <= total_coin:   #確認輸入的金額小於機器內的金額
                 telegram_bot.sendMessage(chat_id, f"收到數字: {number}")
                 import final_motor  # 在這裡引入 final_motor 並使用 number
             else:
