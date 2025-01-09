@@ -6,6 +6,8 @@ from telepot.loop import MessageLoop
 # 狀態管理變數
 user_states = {}
 
+a = 0
+
 def fetch_total_money():
     try:
         from final_ldr import total_money  # 導入當前 total_money
@@ -17,7 +19,7 @@ def fetch_total_money():
     
 def fetch_coin_count():
     try:
-        from final_ldr import dark_counts  # 導入當前 total_money
+        from final_ldr import dark_counts  # current coin counts
         return dark_counts
     except ImportError:
         return "無法加載 final_ldr 模組！"
@@ -26,6 +28,7 @@ def fetch_coin_count():
 
 def action(msg):
     global user_states
+    global a
     chat_id = msg['chat']['id']
     command = msg['text']
 
@@ -40,8 +43,9 @@ def action(msg):
                 file.write(f"User {chat_id}: {number}\n")
             
             
-            total_coin = fetch_total_money()  
-            if number <= total_coin:   #確認輸入的金額小於機器內的金額
+            total_coin = fetch_total_money()
+            
+            if number <= total_coin: 
                 telegram_bot.sendMessage(chat_id, f"收到數字: {number}")
                 import final_motor  # 在這裡引入 final_motor 並使用 number
             else:
@@ -58,11 +62,12 @@ def action(msg):
         telegram_bot.sendMessage(chat_id, "test")
         
     elif command == '/start':
-        
         telegram_bot.sendMessage(chat_id, "Start coin machine")
         import final_ldr
         total_coin = fetch_total_money()
-        telegram_bot.sendMessage(chat_id, f"Start coin machine. Total money: {total_coin}")
+        a += total_coin
+        telegram_bot.sendMessage(chat_id, f"Start coin machine. Total money: {a}")
+        print(a)
         
     elif command == '/withdraw':
         
@@ -71,6 +76,10 @@ def action(msg):
         user_states[chat_id] = 'awaiting_number'  # 設置狀態為等待數字
         #telegram_bot.sendMessage(chat_id, f"Start coin machine. Total money: {coin_counts}")
         #import final_motor
+        
+    elif command == '/show':
+        total_coin = fetch_total_money()
+        telegram_bot.sendMessage(chat_id, f"Total money: {total_coin}")   
         
     elif command == '/unlock':
         telegram_bot.sendMessage(chat_id, "Start face recognition")
