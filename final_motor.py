@@ -2,47 +2,61 @@ from gpiozero import Servo
 from time import sleep
 import tgbot
 
+def get_input_number(filename="user_input.txt"):
+    with open(filename, "r") as file:
+        lines = file.readlines()
+        if not lines:
+            return None  # 文件为空时返回None
+
+        last_line = lines[-1]
+        # 假设每行格式为 "User {chat_id}: {number}\n"
+        try:
+            number = int(last_line.strip().split(": ")[-1])
+            return number
+        except (IndexError, ValueError):
+            return None  # 如果格式不正确或转换失败，返回None
+
 a = tgbot.fetch_total_money()
 b = tgbot.fetch_coin_count()
-c = tgbot.fetch_input_number()
-
-
-#a = 62
-#b = [4, 15, 20, 50]
+c = get_input_number()
 
 servo_counts = [0, 0, 0, 0]
+
+
+for i in range(3,-1,-1):
+    while c > 0 and b[i] > 0:
+        if i == 3 and c >= 50:
+            c -= 50
+            b[i] -= 1
+            servo_counts[i] += 1
+        elif i == 2 and c >= 10:
+            c -= 10
+            b[i] -= 1
+            servo_counts[i] += 1
+        elif i == 1 and c >= 5:
+            c -= 5
+            b[i] -= 1
+            servo_counts[i] += 1
+        elif i == 0 and c >= 1:
+            c -= 1
+            b[i] -= 1
+            servo_counts[i] += 1
+        else:
+            break
+
+a -= c
 
 print(a)
 print(b)
 print(c)
-
-for i in range(3,-1,-1):
-    while a > 0 and b[i] > 0:
-        if i == 3 and a >= 50:
-            a-=50
-            b[i]-=50
-            servo_counts[i]+=1
-        elif i == 2 and a >= 10:
-            a-=10
-            b[i]-=10
-            servo_counts[i]+=1
-        elif i == 1 and a >= 5:
-            a-=5
-            b[i]-=5
-            servo_counts[i]+=1
-        elif i == 0 and a >= 1:
-            a-=1
-            b[i]-=1
-            servo_counts[i]+=1
-        else:
-            break
- 
-print(a)
-print(b) 
 print(servo_counts)
 
-#servo = Servo(17)
+servo1 = Servo(5)
+servo2 = Servo(6)
+servo3 = Servo(13)
+servo4 = Servo(19)
 
+for i in range(3,-1,-1):
 #while True:
 #    servo.min()
 #    sleep(2)
