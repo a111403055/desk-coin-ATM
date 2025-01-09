@@ -1,7 +1,6 @@
 import RPi.GPIO as GPIO
 import time
 
-# GPIO Pins for LDRs
 LDR_PINS = [17, 18, 27, 22]  # Define GPIO pins for 4 LDRs
 COUNT_THRESHOLD = 0.5  # Adjust this for debounce or sensitivity
 
@@ -17,7 +16,10 @@ print("Press Ctrl+C to exit")
 
 global total_money
 
+
+
 try:
+    a = 0
     for j in range(10):
         for i, pin in enumerate(LDR_PINS):
             # Read LDR value
@@ -26,23 +28,28 @@ try:
             # Detect darkness (adjust condition if needed)
             if ldr_value == 0: # Darkness condition
                 if i == 0:
+                    a += 1
                     dark_counts[i] += 1
                 
                 if i == 1:
-                    dark_counts[i] += 5
+                    a += 5
+                    dark_counts[i] += 1
                 
                 if i == 2:
-                    dark_counts[i] += 10
+                    a += 10
+                    dark_counts[i] += 1
                     
                 if i == 3:
-                    dark_counts[i] += 50
+                    a += 50
+                    dark_counts[i] += 1
         
         # Sleep to avoid bouncing
         time.sleep(COUNT_THRESHOLD)
 
         # Combine counts for all LDRs and print unified result
-        total_money = sum(dark_counts)
+        total_money = a
             
+        # print(dark_counts)
         print(f"Total money: {total_money}")
 
 
@@ -51,3 +58,4 @@ except KeyboardInterrupt:
 finally:
     
     GPIO.cleanup()
+
