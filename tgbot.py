@@ -1,21 +1,32 @@
 import time
 import telepot
-import subprocess
 from telepot.loop import MessageLoop
 
 # 狀態管理變數
 user_states = {}
 
-a = 0
+#def fetch_total_money():
+#    try:
+#        from final_ldr import total_money  # 導入當前 total_money
+#        return total_money
+#    except ImportError:
+#        return "無法加載 final_ldr 模組！"
+#    except Exception as e:
+#        return f"發生錯誤: {e}"
+    
+def fetch_total_money(filename="total_money.txt"):
+    with open(filename, "r") as file:
+        lines = file.readlines()
+        if not lines:
+            return None  # 文件为空时返回None
 
-def fetch_total_money():
-    try:
-        from final_ldr import total_money  # 導入當前 total_money
-        return total_money
-    except ImportError:
-        return "無法加載 final_ldr 模組！"
-    except Exception as e:
-        return f"發生錯誤: {e}"
+        last_line = lines[-1]
+        # 假设每行格式为 "User {chat_id}: {number}\n"
+        try:
+            total_money = int(last_line[-1])
+            return total_money
+        except (IndexError, ValueError):
+            return None  # 如果格式不正确或转换失败，返回None
     
 def fetch_coin_count():
     try:
@@ -47,7 +58,7 @@ def action(msg):
             
             if number <= total_coin: 
                 telegram_bot.sendMessage(chat_id, f"收到數字: {number}")
-                import final_motor  # 在這裡引入 final_motor 並使用 number
+                import final_motor  # 在這裡引入 final_motor
             else:
                 telegram_bot.sendMessage(chat_id, "No enough money") 
             
@@ -64,10 +75,11 @@ def action(msg):
     elif command == '/start':
         telegram_bot.sendMessage(chat_id, "Start coin machine")
         import final_ldr
+        telegram_bot.sendMessage(chat_id, "This process has finished")
+        
+    elif command == '/show':
         total_coin = fetch_total_money()
-        a += total_coin
-        telegram_bot.sendMessage(chat_id, f"Start coin machine. Total money: {a}")
-        print(a)
+        telegram_bot.sendMessage(chat_id, f"Total money: {total_coin}")
         
     elif command == '/withdraw':
         
@@ -75,7 +87,6 @@ def action(msg):
         coin_counts = fetch_coin_count()
         user_states[chat_id] = 'awaiting_number'  # 設置狀態為等待數字
         #telegram_bot.sendMessage(chat_id, f"Start coin machine. Total money: {coin_counts}")
-        #import final_motor
         
     elif command == '/show':
         total_coin = fetch_total_money()
@@ -94,7 +105,9 @@ if __name__ == "__main__":
     MessageLoop(telegram_bot, action).run_as_thread()
 
     print('Up and Running....')
-
+    
+    a = 0
+    
     while True:
         time.sleep(10)
 
