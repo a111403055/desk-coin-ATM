@@ -213,7 +213,8 @@ python3 train_model.py
 
 5. 輸入/unlock禁行臉部辨識，辨識成功後可取出金額
 
-   ![image](https://github.com/user-attachments/assets/1fb63f8c-0f99-4579-8157-5a6f8e3923e1)
+   ![image](https://github.com/user-attachments/assets/97c65a49-062c-4ff9-ad2f-2cb89837c314)
+
 
 ## 參考資料
 - https://core-electronics.com.au/guides/face-identify-raspberry-pi/  臉部辨識參考網站
