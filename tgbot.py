@@ -1,3 +1,4 @@
+import ast
 import time
 import telepot
 from telepot.loop import MessageLoop
@@ -20,15 +21,18 @@ def fetch_total_money(filename="total_money.txt"):
             return None  # 如果格式不正确或转换失败，返回None
 
 # 從final_ldr.py中獲取dark_counts(coin_count)的值
-def fetch_coin_count():
-    try:
-        from final_ldr import dark_counts  # 4個LDRs分鱉偵測到的硬幣數量
-        return dark_counts
-    except ImportError:
-        return "無法加載 final_ldr 模組！"
-    except Exception as e:
-        return f"發生錯誤: {e}"
+def fetch_coin_count(filename="coin_count.txt"):
+    with open("filename.txt", "r") as file:
+        lines = file.readlines()
+        last_line = lines[-1].strip()  # 读取最后一行并去除换行符
+       
+        try:
+            coin_count = ast.literal_eval(last_line)  # 将字符串转换回列表
+            return coin_count
+        except (IndexError, ValueError):
+            return None  # 如果格式不正确或转换失败，返回None
 
+# 偵測從Telegram收到的指令
 def action(msg):
     global user_states
     global a
@@ -81,15 +85,10 @@ def action(msg):
 if __name__ == "__main__":
     # 初始化 Telegram Bot
     telegram_bot = telepot.Bot('7662998172:AAHWJB78tA_Qi003MB-BEpiHcO0JFP7G3DA')
-
     print(telegram_bot.getMe())
-
     MessageLoop(telegram_bot, action).run_as_thread()
-
-    print('Up and Running....')
-    
+    print('Up and Running....') 
     a = 0
-    
     while True:
         time.sleep(10)
 
