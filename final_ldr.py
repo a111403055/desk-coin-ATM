@@ -26,7 +26,7 @@ try:
             if ldr_value == 0: # 設定0為硬幣經過
                 if i == 0:
                     a += 1 # 機器內總金額增加
-                    dark_counts[i] += 1 # 對應的ldr數量加一(代表此處增加一個硬幣)
+                    dark_counts[i] += 1 # 對應的LDR數量加一(代表此處增加一個硬幣)
                 
                 if i == 1:
                     a += 5
@@ -51,8 +51,12 @@ try:
 except KeyboardInterrupt:
     print("\nExiting program")
 finally:
-    
-    with open("total_money.txt", "a") as file: # 將total_money寫入total_money.txt中
+    # 將total_money寫入total_money.txt中
+    with open("total_money.txt", "a") as file: 
         file.write(f"{total_money}\n")
+
+    # 將4個LDRs偵測到的硬幣數寫入coin_count.txt中
+    with open("coin_count.txt", "a") as file:
+        file.write(f"{dark_counts}\n")
     
     GPIO.cleanup()
