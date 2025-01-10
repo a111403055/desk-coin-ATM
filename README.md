@@ -199,6 +199,8 @@ python3 train_model.py
 
 1. 運行tgbot.py
 
+   ![image](https://github.com/user-attachments/assets/c645b721-7484-4308-ac64-b97e3663ad57)
+
 2. 輸入/start後投入硬幣，自動偵測投入的硬幣和金額總數
 
    ![image](https://github.com/user-attachments/assets/71000c00-6200-4b99-b0aa-f7fd09bdc319)
@@ -213,6 +215,7 @@ python3 train_model.py
 
 5. 輸入/unlock禁行臉部辨識，辨識成功後可取出金額
 
+   ![image](https://github.com/user-attachments/assets/50913037-dfd8-4502-b78a-df0fa33c47e2)
    ![image](https://github.com/user-attachments/assets/97c65a49-062c-4ff9-ad2f-2cb89837c314)
 
 
