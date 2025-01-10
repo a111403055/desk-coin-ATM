@@ -84,7 +84,7 @@ def action(msg):
         
 if __name__ == "__main__":
     # 初始化 Telegram Bot
-    telegram_bot = telepot.Bot('7662998172:AAHWJB78tA_Qi003MB-BEpiHcO0JFP7G3DA')
+    telegram_bot = telepot.Bot('YOUR TOKEN HERE')
     print(telegram_bot.getMe())
     MessageLoop(telegram_bot, action).run_as_thread()
     print('Up and Running....') 
