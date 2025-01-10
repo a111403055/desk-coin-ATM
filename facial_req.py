@@ -77,7 +77,7 @@ while True:
                 currentname = name
                 print(currentname)
                 
-                #Turn the servo
+                #控制伺服馬達(是否解鎖)
                 servo.min()
                 time.sleep = 2
                 servo.max()
