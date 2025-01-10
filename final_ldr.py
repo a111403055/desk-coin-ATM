@@ -48,14 +48,16 @@ try:
 
         # Combine counts for all LDRs and print unified result
         total_money = a
-            
-        # print(dark_counts)
+       
         print(f"Total money: {total_money}")
 
 
 except KeyboardInterrupt:
     print("\nExiting program")
 finally:
+    
+    with open("total_money.txt", "a") as file:
+        file.write(f"{total_money}\n")
     
     GPIO.cleanup()
 
