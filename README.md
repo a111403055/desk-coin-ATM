@@ -204,16 +204,18 @@ python3 train_model.py
 2. 輸入/start後投入硬幣，自動偵測投入的硬幣和金額總數
 
    ![image](https://github.com/user-attachments/assets/71000c00-6200-4b99-b0aa-f7fd09bdc319)
+   ![image](https://github.com/user-attachments/assets/57c4a7fc-9f46-421a-bd17-a50becbbdc3f)
 
-3. 輸入/show，顯示目前機器內總金額
+4. 輸入/show，顯示目前機器內總金額
 
-   ![image](https://github.com/user-attachments/assets/2176cea5-473e-4f99-9952-6a2faa0b34e6)
+   ![image](https://github.com/user-attachments/assets/578729b5-6ca4-4021-b81c-caccee9c7bb2)
+   ![image](https://github.com/user-attachments/assets/0dc9b329-0520-4e2b-8a60-51ad585e26d0)
 
-4. 輸入/withdraw，輸入你想取出的金額，等待機器將對應的金額落下
+6. 輸入/withdraw，輸入你想取出的金額，等待機器將對應的金額落下
 
    ![image](https://github.com/user-attachments/assets/8d2c1e6b-dfbc-4a48-9b63-719ef511f4e7)
 
-5. 輸入/unlock禁行臉部辨識，辨識成功後可取出金額
+7. 輸入/unlock禁行臉部辨識，辨識成功後可取出金額
 
    ![image](https://github.com/user-attachments/assets/50913037-dfd8-4502-b78a-df0fa33c47e2)
    ![image](https://github.com/user-attachments/assets/97c65a49-062c-4ff9-ad2f-2cb89837c314)
