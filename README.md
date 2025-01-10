@@ -214,8 +214,9 @@ python3 train_model.py
 6. 輸入/withdraw，輸入你想取出的金額，等待機器將對應的金額落下
 
    ![image](https://github.com/user-attachments/assets/8d2c1e6b-dfbc-4a48-9b63-719ef511f4e7)
+   ![image](https://github.com/user-attachments/assets/3a380e99-12c6-4575-9f52-763de1dcafae)
 
-7. 輸入/unlock禁行臉部辨識，辨識成功後可取出金額
+8. 輸入/unlock禁行臉部辨識，辨識成功後可取出金額
 
    ![image](https://github.com/user-attachments/assets/50913037-dfd8-4502-b78a-df0fa33c47e2)
    ![image](https://github.com/user-attachments/assets/97c65a49-062c-4ff9-ad2f-2cb89837c314)
