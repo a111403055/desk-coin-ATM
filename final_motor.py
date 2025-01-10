@@ -1,4 +1,4 @@
-from gpiozero import Servo
+from gpiozero import AngularServo
 from time import sleep
 import tgbot
 
@@ -22,6 +22,10 @@ c = get_input_number()
 
 servo_counts = [0, 0, 0, 0]
 
+servo1 = AngularServo(5, min_angle=-90, max_angle=90)
+servo2 = AngularServo(6, min_angle=-90, max_angle=90)
+servo3 = AngularServo(13, min_angle=-90, max_angle=90)
+servo4 = AngularServo(19, min_angle=-90, max_angle=90)
 
 for i in range(3,-1,-1):
     while c > 0 and b[i] > 0:
@@ -46,43 +50,37 @@ for i in range(3,-1,-1):
 
 a -= c
 
-print(a)
-print(b)
-print(c)
-print(servo_counts)
-
-servo1 = Servo(5)
-servo2 = Servo(6)
-servo3 = Servo(13)
-servo4 = Servo(19)
+with open("total_money.txt", "a") as file:
+    file.write(f"{a}\n")
 
 for i in range(3,-1,-1):
     while servo_counts[i] > 0:
         if i == 0:
-            servo1.min()
+            servo1.angle = -90
             sleep(0.5)
-            servo1.max()
+            servo1.angle = 90
             sleep(0.5)
+            servo_counts[i] -= 1
+            
         elif i == 1:
-            servo2.min()
+            servo2.angle = -90
             sleep(0.5)
-            servo2.max()
+            servo2.angle = 90
             sleep(0.5)
+            servo_counts[i] -= 1
+            
         elif i == 2:
-            servo3.min()
+            servo3.angle = -90
             sleep(0.5)
-            servo3.max()
+            servo3.angle = 90
             sleep(0.5)
+            servo_counts[i] -= 1
+            
         elif i == 3:
-            servo4.min()
+            servo4.angle = -90
             sleep(0.5)
-            servo4.max()
+            servo4.angle = 90
             sleep(0.5)
-
-
-#while True:
-#    servo.min()
-#    sleep(2)
-#    servo.max()
-#    sleep(2)
-
+            servo_counts[i] -= 1
+            
+print("Finish")
