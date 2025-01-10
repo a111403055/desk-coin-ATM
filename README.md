@@ -114,7 +114,7 @@ git clone https://github.com/carolinedunn/facial_recognition
 
 4. 在home/facial_recognition/dataset中，新增和步驟2相同名字的資料夾
 
-![image](https://github.com/user-attachments/assets/3f1bdf1f-3f5c-490b-b5cf-e69ea21bca07)
+![image](https://github.com/user-attachments/assets/67cf8d0c-e821-420e-b0f3-4cb2866f6402)
 
 5. 運行headshots_picam.py，使用空白鍵拍攝不同角度自拍照(至少十張)
 
