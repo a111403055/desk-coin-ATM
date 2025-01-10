@@ -18,7 +18,7 @@ global total_money
 
 try:
     a = 0
-    for j in range(10):
+    for j in range(10): # 偵測的次數(總時長)
         for i, pin in enumerate(LDR_PINS):
             ldr_value = GPIO.input(pin)
             
