@@ -8,10 +8,11 @@ def get_input_number(filename="user_input.txt"):
         if not lines:
             return None  # 文件为空时返回None
 
-        last_line = lines[-1]
+        last_line = lines[-1].strip()
         # 假设每行格式为 "User {chat_id}: {number}\n"
         try:
-            number = int(last_line.strip().split(": ")[-1])
+            number = int(last_line.split(": ")[-1])
+            print(number)
             return number
         except (IndexError, ValueError):
             return None  # 如果格式不正确或转换失败，返回None
@@ -26,6 +27,10 @@ servo1 = AngularServo(5, min_angle=-90, max_angle=90)
 servo2 = AngularServo(6, min_angle=-90, max_angle=90)
 servo3 = AngularServo(13, min_angle=-90, max_angle=90)
 servo4 = AngularServo(19, min_angle=-90, max_angle=90)
+
+a = a - c
+with open("total_money.txt", "a") as file:
+    file.write(f"{a}\n")
 
 for i in range(3,-1,-1):
     while c > 0 and b[i] > 0:
@@ -47,11 +52,6 @@ for i in range(3,-1,-1):
             servo_counts[i] += 1
         else:
             break
-
-a -= c
-
-with open("total_money.txt", "a") as file:
-    file.write(f"{a}\n")
 
 for i in range(3,-1,-1):
     while servo_counts[i] > 0:
