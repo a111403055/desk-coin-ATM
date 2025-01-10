@@ -5,15 +5,6 @@ from telepot.loop import MessageLoop
 # 狀態管理變數
 user_states = {}
 
-#def fetch_total_money():
-#    try:
-#        from final_ldr import total_money  # 導入當前 total_money
-#        return total_money
-#    except ImportError:
-#        return "無法加載 final_ldr 模組！"
-#    except Exception as e:
-#        return f"發生錯誤: {e}"
-    
 def fetch_total_money(filename="total_money.txt"):
     with open(filename, "r") as file:
         lines = file.readlines()
@@ -23,7 +14,7 @@ def fetch_total_money(filename="total_money.txt"):
         last_line = lines[-1]
         # 假设每行格式为 "User {chat_id}: {number}\n"
         try:
-            total_money = int(last_line[-1])
+            total_money = int(last_line.strip())
             return total_money
         except (IndexError, ValueError):
             return None  # 如果格式不正确或转换失败，返回None
